@@ -1,0 +1,11 @@
+.formContainer {
+    display: flex;
+    flex-direction: column;
+    height: 200px;
+    justify-content: space-between;
+    text-align: left;
+
+    .label {
+        margin-right: 10px;
+    }
+}

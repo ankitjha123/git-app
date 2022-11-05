@@ -1,5 +1,8 @@
 .App {
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .App-logo {
@@ -35,4 +38,11 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.commits-list {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }

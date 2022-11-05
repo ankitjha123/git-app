@@ -1,23 +1,27 @@
-import logo from './logo.svg';
 import './App.css';
+import { useLoadCommits } from './custom-hooks/useLoadCommits';
+import React from 'react';
+import { AppForm } from './components/app-form';
+import { CommitList } from './components/commit-list/CommitList';
 
 function App() {
+  const [formData, setFormData] = React.useState({});
+
+  const {loading, commitData, error} = useLoadCommits(formData);
+  console.log(commitData);
+  let commitsConatiner = Object.keys(commitData).length>0 && commitData.map((elem) => {
+    return <CommitList key={elem.sha} commitData={elem}/>
+  })
+  
+  
+  if(loading) {
+    return <div>loading . . .</div>
+  }
+  
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+        <AppForm setFormData={setFormData}/>
+        {commitsConatiner}
     </div>
   );
 }
