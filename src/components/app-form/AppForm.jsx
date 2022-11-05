@@ -29,16 +29,16 @@ export function AppForm({setFormData}) {
         <form onSubmit={handleFormSubmit} className={styles.formContainer}>
             <div>
                 <label htmlFor="owner" className={styles.label}>Owner</label>
-                <input name='owner' onChange={handleFormChange}></input>
+                <input name='owner' value={formState.owner} onChange={handleFormChange}></input>
             </div>
             <div>
                 <label htmlFor="repo" className={styles.label}>Repo Name</label>
-                <input name='repo' onChange={handleFormChange}></input>
+                <input name='repo' value={formState.repo} onChange={handleFormChange}></input>
             </div>
             
             <div>
                 <label htmlFor="public_access_key" className={styles.label}>Public Access Key</label>
-                <input name='public_access_key' onChange={handleFormChange}></input>
+                <input name='public_access_key' value={formState.public_access_key} onChange={handleFormChange}></input>
             </div>
             
             <button type='submit'>Submit</button>

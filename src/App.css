@@ -46,3 +46,12 @@
   flex-direction: column;
   justify-content: space-between;
 }
+
+.app-actionpanel {
+  width: 80%;
+  margin: 1rem;
+}
+
+.refresh-btn {
+  float: right;
+}

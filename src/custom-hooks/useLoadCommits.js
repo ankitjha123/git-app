@@ -6,18 +6,20 @@ export const useLoadCommits = (formData) => {
         commitData: {},
         errorState: false
     });
-
+    const [refreshData, setRefreshData] = React.useState({})
 
     React.useEffect(() => {
-        const { owner ='',
+        let { owner ='',
         repo = '',
-        public_access_key = ''} = formData
+        public_access_key = localStorage.getItem('token') || ''} = formData;
+        if(!public_access_key) public_access_key = localStorage.getItem('token');
+        else localStorage.setItem("token", public_access_key);
         if(owner) {
             setData((prevData) => {return {...prevData, loading: true }});
             fetch(`https://api.github.com/repos/${owner}/${repo}/commits`, {
                 headers: {
                     "Accept": "application/vnd.github+json",
-                    "Authorization": `Bearer ${public_access_key} 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`
+                    "Authorization": `Bearer ${public_access_key}`
                 }
             }).then((res) => {
                 return res.json()
@@ -42,7 +44,7 @@ export const useLoadCommits = (formData) => {
                 setData((prevData) => {return {...prevData, loading: false, commitData: [], errorState: true}});
             })
         }
-    },[formData])
+    },[formData, refreshData])
 
-    return data;
+    return [data, setRefreshData];
 }
